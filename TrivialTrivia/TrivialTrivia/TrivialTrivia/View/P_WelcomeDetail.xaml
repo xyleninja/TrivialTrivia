@@ -5,8 +5,8 @@
              Title="Welcome">
     <StackLayout Padding="10">
         <Label Text="Welcome to Trivial Trivia,&#x0a;your personal trivia app." HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,60,0,0"/>
-        <Label Text="To continue choose either to create &#x0a;or join a room by pressing&#x0a;one of the buttons below." HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,10"/>
-        <Button Text="Join room" HorizontalOptions="Center" WidthRequest="120"/>
-        <Button Text="Create room" HorizontalOptions="Center" WidthRequest="120" Margin="0,10,0,0"/>
+        <Label Text="To continue choose either to create &#x0a;or join a lobby by pressing&#x0a;one of the buttons below." HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,10"/>
+        <Button Text="Join lobby" HorizontalOptions="Center" WidthRequest="120" Clicked="b_join_Clicked"/>
+        <Button Text="Create lobby" HorizontalOptions="Center" WidthRequest="120" Margin="0,10,0,0" Clicked="b_create_Clicked"/>
     </StackLayout>
 </ContentPage>
