@@ -16,5 +16,15 @@ namespace TrivialTrivia
         {
             InitializeComponent();
         }
+
+        private void b_join_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new P_SearchLobby());
+        }
+
+        private void b_create_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new P_Lobby());
+        }
     }
 }

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrivialTrivia.P_SearchLobby"
+             Title="Seach Lobbies">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <ListView x:Name="lv_lobbies" VerticalOptions="FillAndExpand"/>
+            <Label Text="Join Lobby"/>
+            <StackLayout Orientation="Horizontal">
+                <Entry HorizontalOptions="FillAndExpand"/>
+                <Button HorizontalOptions="End" WidthRequest="50" FontSize="Large" FontAttributes="Bold"  Text="⟳"/>
+            </StackLayout>
+            <Button Text="Join lobby" BindingContext="{Binding Source={x:Reference lv_lobbies}, Path=SelectedItem}">
+                <Button.Triggers>
+                    <!--Tricky but it works-->
+                    <Trigger TargetType="Button" Property="BindingContext" Value="{x:Null}">
+                        <Setter Property="IsEnabled" Value="False"/>
+                    </Trigger>
+                </Button.Triggers>
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
