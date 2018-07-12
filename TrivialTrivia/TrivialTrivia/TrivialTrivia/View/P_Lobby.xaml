@@ -1,12 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TrivialTrivia.P_Lobby">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+             x:Class="TrivialTrivia.P_Lobby"
+             Title="{Binding Source={x:Reference e_lobbyName}, Path=Text}">
+    <ContentPage>
+        <ContentPage.Content>
+            <StackLayout Padding="10">
+                <StackLayout.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="VerticalTextAlignment" Value="Center"/>
+                    </Style>
+                </StackLayout.Resources>
+                <Label Text="Lobby Settings"/>
+                <StackLayout>
+                    <Label Text="Lobby name"/>
+                    <Entry x:Name="e_lobbyName"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Please select a set of questions."/>
+                    <Picker/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Number of questions" HorizontalOptions="FillAndExpand"/>
+                    <Entry HorizontalTextAlignment="End" WidthRequest="125"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Display hints?" HorizontalOptions="FillAndExpand"/>
+                    <Switch WidthRequest="125"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Transition time" HorizontalOptions="FillAndExpand"/>
+                    <Entry HorizontalTextAlignment="End" WidthRequest="80"/>
+                    <Label Text="Sec." WidthRequest="40"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Time per question" HorizontalOptions="FillAndExpand"/>
+                    <Entry HorizontalTextAlignment="End" WidthRequest="80"/>
+                    <Label Text="Sec." WidthRequest="40"/>
+                </StackLayout>
+                <StackLayout VerticalOptions="FillAndExpand"/>
+                <Button Text="Close Lobby" VerticalOptions="End" BackgroundColor="Red"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage>
+        <ContentPage.Content>
+            <StackLayout Padding="10">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Player" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Color" WidthRequest="70"/>
+                    <Label Text="Ready" WidthRequest="70"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Picker HorizontalOptions="FillAndExpand"/>
+                    <Picker WidthRequest="70"/>
+                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Picker HorizontalOptions="FillAndExpand"/>
+                    <Picker WidthRequest="70"/>
+                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Picker HorizontalOptions="FillAndExpand"/>
+                    <Picker WidthRequest="70"/>
+                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Picker HorizontalOptions="FillAndExpand"/>
+                    <Picker WidthRequest="70"/>
+                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Picker HorizontalOptions="FillAndExpand"/>
+                    <Picker WidthRequest="70"/>
+                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Picker HorizontalOptions="FillAndExpand"/>
+                    <Picker WidthRequest="70"/>
+                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Picker HorizontalOptions="FillAndExpand"/>
+                    <Picker WidthRequest="70"/>
+                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Picker HorizontalOptions="FillAndExpand"/>
+                    <Picker WidthRequest="70"/>
+                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                </StackLayout>
+                <StackLayout VerticalOptions="FillAndExpand"/>
+                <Button Text="Start" VerticalOptions="End" BackgroundColor="Green"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+</CarouselPage>
