@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace TrivialTrivia
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class P_Lobby : ContentPage
+	public partial class P_Lobby : CarouselPage
 	{
 		public P_Lobby ()
 		{
