@@ -1,24 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TrivialTrivia"
              x:Class="TrivialTrivia.P_SearchLobby"
-             Title="Seach Lobbies">
+             Appearing="ContentPage_Appearing"
+             Disappearing="ContentPage_Disappearing" 
+             Title="Seach Lobbies" >
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <ListView x:Name="lv_lobbies" VerticalOptions="FillAndExpand"/>
-            <Label Text="Join Lobby"/>
-            <StackLayout Orientation="Horizontal">
-                <Entry HorizontalOptions="FillAndExpand"/>
-                <Button HorizontalOptions="End" WidthRequest="50" FontSize="Large" FontAttributes="Bold"  Text="⟳"/>
+        <Grid>
+            <StackLayout x:Name="sl_searchLobby" Padding="10">
+                <ListView x:Name="lv_lobbies" VerticalOptions="FillAndExpand" ItemsSource="{Binding hostingLobbies}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="10,0">
+                                    <StackLayout.Resources>
+                                        <Style TargetType="Label">
+                                            <Setter Property="VerticalTextAlignment" Value="Center"/>
+                                        </Style>
+                                    </StackLayout.Resources>
+                                    <Label Text="{Binding designation}" HorizontalOptions="FillAndExpand"/>
+                                    <Label Text="("/>
+                                    <Label Text="{Binding conntectedPlayers}"/>
+                                    <Label Text="/"/>
+                                    <Label Text="{Binding maximumPlayers}"/>
+                                    <Label Text=")"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label Text="Join Lobby"/>
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout.Resources>
+                        <local:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+                    </StackLayout.Resources>
+                    <Entry HorizontalOptions="FillAndExpand"/>
+                    <Button HorizontalOptions="End" WidthRequest="50" FontSize="Large" FontAttributes="Bold" Text="⟳" Clicked="b_refresh_Clicked" IsEnabled="{Binding isBusy,Converter={StaticResource InverseBooleanConverter}}"/>
+                </StackLayout>
+                <Button Text="Join lobby" BindingContext="{Binding Source={x:Reference lv_lobbies}, Path=SelectedItem}">
+                    <Button.Triggers>
+                        <Trigger TargetType="Button" Property="BindingContext" Value="{x:Null}">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </Trigger>
+                    </Button.Triggers>
+                </Button>
             </StackLayout>
-            <Button Text="Join lobby" BindingContext="{Binding Source={x:Reference lv_lobbies}, Path=SelectedItem}">
-                <Button.Triggers>
-                    <!--Tricky but it works-->
-                    <Trigger TargetType="Button" Property="BindingContext" Value="{x:Null}">
-                        <Setter Property="IsEnabled" Value="False"/>
-                    </Trigger>
-                </Button.Triggers>
-            </Button>
-        </StackLayout>
+            <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding isBusy}" IsRunning="{Binding isBusy}" Color="Black"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

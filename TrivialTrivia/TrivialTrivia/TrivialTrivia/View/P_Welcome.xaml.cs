@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,16 @@ namespace TrivialTrivia
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class P_Welcome : MasterDetailPage
     {
+        private P_WelcomeMaster MasterPage = App.welcomeMasterPage;
+
         public P_Welcome()
         {
             InitializeComponent();
+
+            Master = MasterPage;
+
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
+            MasterPage.ListView.SelectedItem = (from wmi in (MasterPage.ListView.ItemsSource as ObservableCollection<WelcomeMenuItem>) where wmi.id == 0 select wmi).FirstOrDefault();
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -24,7 +31,22 @@ namespace TrivialTrivia
             if (item == null)
                 return;
 
-            var page = (Page)Activator.CreateInstance(item.targetType);
+            Page page;
+
+            switch (item.targetType.Name)
+            {
+                case "P_Lobby":
+                    page = App.lobbyPage;
+                    break;
+                case "P_SearchLobby":
+                    page = App.searchLobbyPage;
+                    break;
+                case "P_WelcomeDetail":
+                default:
+                    page = App.welcomeDetailPage;
+                    break;
+            }
+
             page.Title = item.title;
 
             Detail = new NavigationPage(page);

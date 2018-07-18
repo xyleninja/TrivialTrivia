@@ -19,12 +19,12 @@ namespace TrivialTrivia
 
         private void b_join_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new P_SearchLobby());
+            Navigation.PushAsync(App.searchLobbyPage);
         }
 
         private void b_create_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new P_Lobby());
+            Navigation.PushAsync(App.lobbyPage);
         }
     }
 }
