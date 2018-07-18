@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TrivialTrivia"
              x:Class="TrivialTrivia.P_Lobby"
-             Title="{Binding Source={x:Reference e_lobbyName}, Path=Text}">
-    <ContentPage>
+             Title="{Binding lobbyName, Mode=OneWay}"
+             >
+    <ContentPage><!--Settings-->
         <ContentPage.Content>
             <StackLayout Padding="10">
                 <StackLayout.Resources>
@@ -14,28 +16,28 @@
                 <Label Text="Lobby Settings"/>
                 <StackLayout>
                     <Label Text="Lobby name"/>
-                    <Entry x:Name="e_lobbyName"/>
+                    <Entry Text="{Binding lobbyName, Mode=TwoWay}"/>
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Please select a set of questions."/>
-                    <Picker/>
+                    <Picker SelectedItem="{Binding lobbyQuestionSet}" ItemsSource="{Binding Source={x:Static local:App._questionSets}}" ItemDisplayBinding="{Binding designation}"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Number of questions" HorizontalOptions="FillAndExpand"/>
-                    <Entry HorizontalTextAlignment="End" WidthRequest="125"/>
+                    <Entry Text="{Binding lobbyNumberOfQuestions}" HorizontalTextAlignment="End" WidthRequest="125"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Display hints?" HorizontalOptions="FillAndExpand"/>
-                    <Switch WidthRequest="125"/>
+                    <Switch IsToggled="{Binding lobbyHasHints}" WidthRequest="125"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Transition time" HorizontalOptions="FillAndExpand"/>
-                    <Entry HorizontalTextAlignment="End" WidthRequest="80"/>
+                    <Entry Text="{Binding lobbyTransitionInSeconds}" HorizontalTextAlignment="End" WidthRequest="80"/>
                     <Label Text="Sec." WidthRequest="40"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Time per question" HorizontalOptions="FillAndExpand"/>
-                    <Entry HorizontalTextAlignment="End" WidthRequest="80"/>
+                    <Entry Text="{Binding lobbySecondsPerQuesetion}" HorizontalTextAlignment="End" WidthRequest="80"/>
                     <Label Text="Sec." WidthRequest="40"/>
                 </StackLayout>
                 <StackLayout VerticalOptions="FillAndExpand"/>
@@ -43,7 +45,7 @@
             </StackLayout>
         </ContentPage.Content>
     </ContentPage>
-    <ContentPage>
+    <ContentPage> <!--Players-->
         <ContentPage.Content>
             <StackLayout Padding="10">
                 <StackLayout Orientation="Horizontal">
@@ -52,48 +54,60 @@
                     <Label Text="Ready" WidthRequest="70"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Picker HorizontalOptions="FillAndExpand"/>
-                    <Picker WidthRequest="70"/>
-                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                    <Picker ItemDisplayBinding="{Binding name}" SelectedItem="{Binding lobbyPlayers[0]}" HorizontalOptions="FillAndExpand"/>
+                    <Picker Title="Select a color" SelectedItem="{Binding playerOneColor}" BackgroundColor="{Binding playerOneColor}" ItemsSource="{Static local:App._availablePlayerColors}" WidthRequest="70"/>
+                    <Label Text="{Binding playerOneReadyString}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Picker HorizontalOptions="FillAndExpand"/>
-                    <Picker WidthRequest="70"/>
-                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                    <Picker ItemDisplayBinding="{Binding name}" SelectedItem="{Binding lobbyPlayers[1]}" HorizontalOptions="FillAndExpand"/>
+                    <Picker Title="Select a color" SelectedItem="{Binding playerTwoColor}" BackgroundColor="{Binding playerTwoColor}" ItemsSource="{Static local:App._availablePlayerColors}" WidthRequest="70"/>
+                    <Label Text="{Binding playerTwoReadyString}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Picker HorizontalOptions="FillAndExpand"/>
-                    <Picker WidthRequest="70"/>
-                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                    <Picker ItemDisplayBinding="{Binding name}" SelectedItem="{Binding lobbyPlayers[2]}" HorizontalOptions="FillAndExpand"/>
+                    <Picker Title="Select a color" SelectedItem="{Binding playerThreeColor}" BackgroundColor="{Binding playerThreeColor}" ItemsSource="{Static local:App._availablePlayerColors}" WidthRequest="70"/>
+                    <Label Text="{Binding playerThreeReadyString}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Picker HorizontalOptions="FillAndExpand"/>
-                    <Picker WidthRequest="70"/>
-                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                    <Picker ItemDisplayBinding="{Binding name}" SelectedItem="{Binding lobbyPlayers[3]}" HorizontalOptions="FillAndExpand"/>
+                    <Picker Title="Select a color" SelectedItem="{Binding playerFourColor}" BackgroundColor="{Binding playerFourColor}" ItemsSource="{Static local:App._availablePlayerColors}" WidthRequest="70"/>
+                    <Label Text="{Binding playerFourReadyString}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Picker HorizontalOptions="FillAndExpand"/>
-                    <Picker WidthRequest="70"/>
-                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                    <Picker ItemDisplayBinding="{Binding name}" SelectedItem="{Binding lobbyPlayers[4]}" HorizontalOptions="FillAndExpand"/>
+                    <Picker Title="Select a color" SelectedItem="{Binding playerFiveColor}" BackgroundColor="{Binding playerFiveColor}" ItemsSource="{Static local:App._availablePlayerColors}" WidthRequest="70"/>
+                    <Label Text="{Binding playerFiveReadyString}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Picker HorizontalOptions="FillAndExpand"/>
-                    <Picker WidthRequest="70"/>
-                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                    <Picker ItemDisplayBinding="{Binding name}" SelectedItem="{Binding lobbyPlayers[5]}" HorizontalOptions="FillAndExpand"/>
+                    <Picker Title="Select a color" SelectedItem="{Binding playerSixColor}" BackgroundColor="{Binding playerSixColor}" ItemsSource="{Static local:App._availablePlayerColors}" WidthRequest="70"/>
+                    <Label Text="{Binding playerSixReadyString}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Picker HorizontalOptions="FillAndExpand"/>
-                    <Picker WidthRequest="70"/>
-                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                    <Picker ItemDisplayBinding="{Binding name}" SelectedItem="{Binding lobbyPlayers[6]}" HorizontalOptions="FillAndExpand"/>
+                    <Picker Title="Select a color" SelectedItem="{Binding playerSevenColor}" BackgroundColor="{Binding playerSevenColor}" ItemsSource="{Static local:App._availablePlayerColors}" WidthRequest="70"/>
+                    <Label Text="{Binding playerSevenReadyString}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Picker HorizontalOptions="FillAndExpand"/>
-                    <Picker WidthRequest="70"/>
-                    <Label Text="✔️ | ❌" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
+                    <Picker ItemDisplayBinding="{Binding name}" SelectedItem="{Binding lobbyPlayers[7]}" HorizontalOptions="FillAndExpand"/>
+                    <Picker Title="Select a color" SelectedItem="{Binding playerEightColor}" BackgroundColor="{Binding playerEightColor}" ItemsSource="{Static local:App._availablePlayerColors}" WidthRequest="70"/>
+                    <Label Text="{Binding playerEightReadyString}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="70"/>
                 </StackLayout>
                 <StackLayout VerticalOptions="FillAndExpand"/>
                 <Button Text="Start" VerticalOptions="End" BackgroundColor="Green"/>
             </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage>
+        <!--Chatroom-->
+        <ContentPage.Content>
+            <Grid/>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage>
+        <!--Scoreboard-->
+        <ContentPage.Content>
+            <Grid/>
         </ContentPage.Content>
     </ContentPage>
 </CarouselPage>
